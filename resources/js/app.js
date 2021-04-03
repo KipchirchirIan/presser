@@ -5,8 +5,12 @@
  */
 
 require('./bootstrap');
+require('malihu-custom-scrollbar-plugin');
 
-window.Vue = require('vue');
+window.Vue = require('vue').default;
+
+// Load custom JS
+require('./custom');
 
 /**
  * The following block of code may be used to automatically register your
