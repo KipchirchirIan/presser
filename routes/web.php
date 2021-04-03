@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
-});
+})->name('dashboard');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'] ,function () {
     Route::get('/posts', 'PostController@index');
