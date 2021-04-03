@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'] ,function () {
+    Route::get('/posts', 'PostController@index');
+    Route::get('/posts/create', 'PostController@create');
+    Route::post('/posts', 'PostController@store');
+    Route::get('/posts/{post}', 'PostController@show');
+    Route::get('/posts/{post}/edit', 'PostController@edit');
+    Route::put('/posts/{post}', 'PostController@update');
+    Route::delete('/posts/{post}', 'PostController@destroy');
+});
