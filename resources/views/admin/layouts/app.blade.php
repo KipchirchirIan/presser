@@ -44,9 +44,9 @@
 		</div>
 		<ul class="navbar-nav list-unstyled components">
 			{{-- Todo: Remove space between icon and text--}}
-			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard</a>
+			<li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;Posts</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url('admin/posts') }}"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;Posts</a></li>
 			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-photo-video"></i>&nbsp;&nbsp;Media</a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user"></i>&nbsp;&nbsp;Users</a></li>
