@@ -6,7 +6,7 @@
 		<table class="table table-bordered table-striped mt-2">
 			<thead>
 			<tr>
-				<th>Post Titie</th>
+				<th>Post Title</th>
 				<th>Content</th>
 				<th>Status</th>
 				<th>Author</th>
