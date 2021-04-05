@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = DB::table('tbl_posts')->get();
+        $posts = Post::get();
 
         if ($request->query('status') !== null) {
         	$posts = $posts->where('post_status', $request->query('status'));
