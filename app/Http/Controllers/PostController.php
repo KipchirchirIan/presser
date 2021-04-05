@@ -13,9 +13,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $posts = DB::table('tbl_posts')->get();
+
+        if ($request->query('status') !== null) {
+        	$posts = $posts->where('post_status', $request->query('status'));
+		}
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
