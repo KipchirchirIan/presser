@@ -2,7 +2,7 @@
 
 @section('content')
 	<div>
-		<button class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp;Add Post</button>
+		<a class="btn btn-primary" href="{{ url('admin/posts/create')}}" role="button"><i class="fas fa-plus"></i>&nbsp;Add Post</a>
 		<table class="table table-bordered table-striped mt-2">
 			<thead>
 			<tr>
