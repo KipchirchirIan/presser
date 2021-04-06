@@ -57,6 +57,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+		"test":  "phpunit --configuration phpunit.xml",
+		"test:coverage": [
+			"@putenv XDEBUG_MODE=coverage",
+			"phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
+		],
+		"test:scrutinizer": [
+			"@putenv XDEBUG_MODE=coverage",
+			"phpunit --configuration phpunit.xml phpunit8.xml --do-not-cache-result --color=always --coverage-clover build/logs/clover.xml --coverage-html build/coverage"
+		]
     }
 }
