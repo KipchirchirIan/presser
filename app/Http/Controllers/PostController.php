@@ -40,7 +40,7 @@ class PostController extends Controller
 	 * Store a newly created resource in storage.
 	 *
 	 * @param \Illuminate\Http\Request $request
-	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function store(Request $request)
 	{
@@ -53,7 +53,7 @@ class PostController extends Controller
 			'updated_at' => date('Y-m-d H:i:s')
 		]);
 
-		return view('admin.dashboard');
+		return redirect()->action('PostController@index');
 	}
 
 	/**
