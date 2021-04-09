@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Post;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -76,5 +77,20 @@ class PostControllerTest extends TestCase
 
 		$response->assertStatus(302)
 			->assertRedirect('/admin/posts');
+	}
+
+	public function testEditLoggedIn()
+	{
+		$user = factory(User::class)->create();
+		$post = factory(Post::class)->create();
+
+		$this->actingAs($user, 'web')
+			->get("/admin/posts/{$post->id}/edit")
+			->assertStatus(200)
+			->assertSeeText('Post Title')
+			->assertSeeText('Content')
+			->assertSeeText('Status')
+			->assertViewIs('admin.posts.edit')
+			->assertViewHas('post');
 	}
 }
