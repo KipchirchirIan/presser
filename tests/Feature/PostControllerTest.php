@@ -74,7 +74,7 @@ class PostControllerTest extends TestCase
 				]
 			);
 
-		$response->assertStatus(200)
-			->assertRedirect('/admin/dashboard');
+		$response->assertStatus(302)
+			->assertRedirect('/admin/posts');
 	}
 }
