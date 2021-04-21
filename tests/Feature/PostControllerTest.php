@@ -104,4 +104,18 @@ class PostControllerTest extends TestCase
 			->assertRedirect('/admin/posts');
 		$this->assertDatabaseHas('tbl_posts', ['id' => $post->id, 'post_title' => 'Updated Title']);
 	}
+
+	public function testShowLoggedIn()
+	{
+		$this->actingAs(factory(User::class)->create());
+		$post = factory(Post::class)->create();
+
+		$response = $this->get('/admin/posts/' . $post->id);
+
+		$response->assertSee($post->post_title)
+			->assertSee($post->post_content)
+			->assertSee($post->post_status)
+			->assertViewIs('admin.posts.show')
+			->assertViewHas('post');
+	}
 }
