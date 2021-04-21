@@ -60,11 +60,11 @@ class PostController extends Controller
 	 * Display the specified resource.
 	 *
 	 * @param \App\Post $post
-	 * @return \Illuminate\Http\Response
+	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
 	 */
 	public function show(Post $post)
 	{
-		//
+		return view('admin.posts.show', ['post' => $post]);
 	}
 
 	/**
