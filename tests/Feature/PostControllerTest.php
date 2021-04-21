@@ -93,4 +93,15 @@ class PostControllerTest extends TestCase
 			->assertViewIs('admin.posts.edit')
 			->assertViewHas('post');
 	}
+
+	public function testUpdateLoggedIn()
+	{
+		$this->actingAs(factory(User::class)->create());
+		$post = factory(Post::class)->create(['post_author' => Auth::id()]);
+		$post->post_title = "Updated Title";
+
+		$this->put('/admin/posts/' . $post->id, $post->toArray())
+			->assertRedirect('/admin/posts');
+		$this->assertDatabaseHas('tbl_posts', ['id' => $post->id, 'post_title' => 'Updated Title']);
+	}
 }
