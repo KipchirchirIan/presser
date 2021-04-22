@@ -118,4 +118,15 @@ class PostControllerTest extends TestCase
 			->assertViewIs('admin.posts.show')
 			->assertViewHas('post');
 	}
+
+	public function testDestroyLoggedIn()
+	{
+		$this->actingAs(factory(User::class)->create());
+		$post = factory(Post::class)->create();
+
+		$this->delete('/admin/posts/' . $post->id)
+			->assertRedirect('/admin/posts');
+
+		$this->assertDatabaseMissing('tbl_posts', ['id' => $post->id]);
+	}
 }
