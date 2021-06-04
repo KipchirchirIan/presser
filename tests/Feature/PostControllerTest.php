@@ -4,12 +4,14 @@ namespace Tests\Feature;
 
 use App\Post;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class PostControllerTest extends TestCase
 {
+	use RefreshDatabase;
 	/**
 	 * A basic feature test example.
 	 *
