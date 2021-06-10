@@ -20,7 +20,7 @@ class PostController extends Controller
 		$posts = Post::get();
 
 		if ($request->query('status') !== null) {
-			$posts = $posts->where('post_status', $request->query('status'));
+			$posts = Post::where('post_status', $request->query('status'))->get();
 		}
 
 		return view('admin.posts.index', ['posts' => $posts]);
@@ -44,14 +44,10 @@ class PostController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$id = DB::table('tbl_posts')->insertGetId([
-			'post_title' => $request->input('post_title'),
-			'post_content' => $request->input('post_content'),
-			'post_status' => $request->input('post_status', 'published'),
+		$request->merge([
 			'post_author' => Auth::id(),
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s')
 		]);
+		$post = Post::create($request->input());
 
 		return redirect()->action('PostController@index');
 	}
@@ -88,14 +84,8 @@ class PostController extends Controller
 	 */
 	public function update(Request $request, Post $post)
 	{
-		DB::table('tbl_posts')
-			->where('id', $post->id)
-			->update([
-				'post_title' => $request->input('post_title'),
-				'post_content' => $request->input('post_content'),
-				'post_status' => $request->input('post_status', 'published'),
-				'updated_at' => date('Y-m-d H:i:s')
-			]);
+		$post->fill($request->input());
+		$post->save();
 
 		return redirect()->action('PostController@index');
 	}
@@ -108,7 +98,7 @@ class PostController extends Controller
 	 */
 	public function destroy(Post $post)
 	{
-		DB::table('tbl_posts')->where('id', $post->id)->delete();
+		$post->delete();
 
 		return redirect()->action('PostController@index');
 	}
