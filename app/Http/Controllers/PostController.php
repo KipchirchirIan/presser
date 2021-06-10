@@ -17,7 +17,7 @@ class PostController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$posts = Post::get();
+		$posts = Post::paginate(3);
 
 		if ($request->query('status') !== null) {
 			$posts = Post::where('post_status', $request->query('status'))->get();
